@@ -23,6 +23,7 @@ class Bird extends SpriteComponent{
   }
 
   // update every second
+  @override
   void update(double dt){
     // apply gravity
     velocity += gravity * dt;
