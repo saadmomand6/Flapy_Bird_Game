@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flapp_bird_game/constants/constants.dart';
 import 'package:flapp_bird_game/modules/ground/ground.dart';
+import 'package:flapp_bird_game/modules/pilars/pilars.dart';
 import 'package:flapp_bird_game/views/game.dart';
 
 class Bird extends SpriteComponent with CollisionCallbacks{
@@ -49,5 +50,10 @@ class Bird extends SpriteComponent with CollisionCallbacks{
     if (other is Ground) {
       (parent as FlappyBirdGame).gameOver();
     } 
+
+    // check bird collide with pilars
+    if(other is Pilar){
+      (parent as FlappyBirdGame).gameOver();
+    }
   }
 }
