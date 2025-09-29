@@ -5,12 +5,15 @@ import 'package:flapp_bird_game/constants/constants.dart';
 import 'package:flapp_bird_game/modules/background/background.dart';
 import 'package:flapp_bird_game/modules/bird/bird.dart';
 import 'package:flapp_bird_game/modules/ground/ground.dart';
+import 'package:flapp_bird_game/modules/pilars/pilar_manager.dart';
+import 'package:flapp_bird_game/modules/pilars/pilars.dart';
 import 'package:flutter/material.dart';
 
 class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   late Bird bird;
   late Background background;
   late Ground ground;
+  late PilarManager pilarManager;
 
   // load
   @override
@@ -25,6 +28,10 @@ class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     // load ground
     ground = Ground();
     add(ground);
+
+    // load pilars
+    pilarManager  = PilarManager();
+    add(pilarManager);
   }
 
   //  Tap
@@ -46,6 +53,8 @@ class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
       bird.position = Vector2(birdStartX, birdStartY);
       bird.velocity = 0;
       isGameOver = false;
+      // remove all pilars from game
+      children.whereType<Pilar>().forEach((pilar)=> pilar.removeFromParent());
       resumeEngine();
     }
 
