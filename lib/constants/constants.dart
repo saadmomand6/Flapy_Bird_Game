@@ -4,6 +4,8 @@ const double birdHeight = 40;
 const double birdWidth = 60;
 
 // Physical world properties
-  double velocity  = 0;
+
   double gravity  = 50;
-  double jumpStrength  = -150;
+  double jumpStrength  = -50;
+  double groundHeight = 200;
+  double groundScrollingSpeed = 100;
