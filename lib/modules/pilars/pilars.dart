@@ -9,6 +9,10 @@ class Pilar extends  SpriteComponent with CollisionCallbacks , HasGameRef<Flappy
 // determine pilar is top or bottom
 final bool isTopPilar;
 
+// score
+bool scored = false;
+
+
 // init
 Pilar(Vector2 position , Vector2 size, this.isTopPilar) : super(position: position, size: size);
 
@@ -28,6 +32,16 @@ FutureOr<void> onLoad() async{
   void update(double dt) {
     // move pilar to left
     position.x -= groundScrollingSpeed * dt;
+
+    // check if bird has passed this pilar
+    if (!scored && position.x + size.x < gameRef.bird.position.x) {
+      scored = true;
+
+      // only increment for top pilar to avoid double counting
+      if(isTopPilar){
+        gameRef.incrementScore();
+      }
+    }
 
     // remove the pipe if it go off the screen
     if(position.x + size.x <= 0 ) {
