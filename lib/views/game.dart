@@ -83,6 +83,7 @@ void checkHighScore(){
 
     // show dailog box for user
     showDialog(
+    barrierDismissible: false,
   context: buildContext!,
   builder: (context) => AlertDialog(
     backgroundColor: const Color.fromARGB(255, 19, 167, 154),
